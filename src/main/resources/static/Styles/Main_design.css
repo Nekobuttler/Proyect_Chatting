@@ -1,0 +1,72 @@
+:root{
+    --darker_blue:#03045E;
+    --dark_blue:#023E8A;
+    --ligther_dark_blue:#0077B6;
+    --ligh_blue:#00B4D8l;
+    --darker_light_blue:#0096C7;
+    --super_light_blue:#90E0EF;
+    --almost_white:#ADE8F4;
+}   
+
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    background-color: var(--ligther_dark_blue);
+}
+
+a{
+    text-decoration: none;
+}
+.links{
+    text-decoration: none;
+    color: #CAF0F8;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+h1,h2,h3{
+    color: var(--almost_white);
+}
+
+.list{
+    padding-bottom:20px ; 
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.formulary_container{
+    background-color: var(--almost_white);
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%
+}
+
+.Logo{
+   
+    padding-top: 10px;
+    
+}
+
+.navbar{
+   background-color:var(--darker_light_blue); 
+}
+
+.title{
+    
+    font-size: 35px;
+    color:orangered;
+    
+}
+
+.formulary{
+    
+}
+
+.formulary_container{
+    border: 1px;
+}

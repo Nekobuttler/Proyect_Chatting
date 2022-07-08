@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Chatting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="index.html"></a>
+        <h1>Nuestros usuarios</h1>
+        <a th:href="@{/}">
+            <div>
+                <h3>Logo</h3>
+            </div>
+        </a>
+        <div th:if="${users != null and !users.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Id_usuario</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Contrase;a</th>
+            </thead>
+            <tbody>
+            <tr th:each="user :${users}">
+                <td th:text="${user.id_user}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td><!-- comment -->
+                <td th:text="${user.edad}"></td><!-- comment -->
+                <td th:text="${user.password}"></td><!-- comment -->
+              <!-- <td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td>  --> 
+                
+            </tr>
+            </tbody>
+ 
+        </table>
+            </div>
+         <div th:if="${users == null or users.empty}">
+            <h2>No se tienen articulos que mostrarr</h2>    
+        </div>
+    </body>
+</html>

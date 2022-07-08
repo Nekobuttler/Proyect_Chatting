@@ -1,0 +1,68 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    
+    <link th:href="@{/styles/User_registration.css}" rel="stylesheet" />
+   
+        
+<html >
+    
+    <link href="Untitled-2.css" rel="stylesheet" />
+   
+        <title>Chatting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div>
+    
+    </div>
+        <head>
+
+    <a href="Main_Page.html"></a>
+        <div class="nav">
+         <h1 class="links">Logo</h1>
+         <a class="links" th:href="@{/}">
+            <div>
+                <h3>Regresar</h3>
+            </div>
+        </a>
+    </div>
+    </head>
+    
+    
+        <body>  
+          
+                
+         <div class="formulary_container">
+             <section class="formulary">
+                <header>Sign Up</header>
+          <form class="form" th:action="@{/saveUser}"
+              method="post"
+              th:object="${user}">
+            <input  type="hidden" name="id_user" th:field="*{id_user}" >
+            
+            <div>
+            <label  for="username">Username</label>
+            <input class="input" type="text" name="username" th:field="*{username}" placeholder="Enter an username"/>
+            </div>
+            
+            <div>
+            <label for="email">Email</label>
+            <input class="input"type="text" name="email" th:field="*{email}" placeholder="Enter your email"/>
+            </div>
+           
+            <div>
+             <label for="edad">Edad</label>
+             <input  class="input" type="number" name="edad" th:field="*{edad}" placeholder="Enter your age"/>
+             </div>
+            
+            <div>
+             <label for="password">Password</label>
+             <input  class="input" type="text" name="password" th:field="*{password}" placeholder="Enter a secure password"/>
+            </div>
+         
+            <input class="button" type="submit" name="guardar" value="Guardar"/>
+        </form>
+    </section>
+             </div>
+           
+    </body>  
+</html>
