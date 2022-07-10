@@ -2,6 +2,7 @@
 package com.Chatting.Chat.Domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name="ambient")
 public class Ambient implements Serializable{
     private static final long serialVersionUID = 1L;
     
@@ -20,23 +21,17 @@ public class Ambient implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-     private Long id_user;
-    
-    private String username;
-    private String email;
-    private String password;
-    private int edad;
+    @Column(name="id_ambient")
+     private Long id_ambient;
+     private Long id_category;  
 
     public Ambient(){}
-    
-    public Ambient(String username, String email, String password, int edad) {
-       
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.edad = edad;
+
+    public Ambient(Long id_category) {
+        this.id_category = id_category;
     }
     
+   
     
     
 }

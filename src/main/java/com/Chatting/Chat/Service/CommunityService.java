@@ -1,13 +1,14 @@
 
 package com.Chatting.Chat.Service;
 
+import com.Chatting.Chat.Domain.Ambient;
 import com.Chatting.Chat.Domain.Community;
 import java.util.List;
 
 
 public interface CommunityService{
     
-    public List<Community> getCommunitys();
+    public List<Community> getCommunities(Ambient ambient);
        
    
     public void save(Community community);
