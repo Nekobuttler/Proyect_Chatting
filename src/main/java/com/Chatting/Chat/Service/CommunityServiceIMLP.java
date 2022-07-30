@@ -22,7 +22,7 @@ public class CommunityServiceIMLP implements CommunityService {
     
     @Autowired
     private AmbientDao ambientDao;
-    
+    /*
     @Transactional(readOnly=true)
     @Override
     public List<Community> getCommunities(Ambient ambient){
@@ -32,6 +32,13 @@ public class CommunityServiceIMLP implements CommunityService {
             
         }
         return list;
+    }
+*/
+    
+    @Transactional(readOnly=true)
+    @Override
+    public List<Community> getCommunities(){
+        return (List<Community>) communityDao.findAll();
     }
     
     @Transactional
@@ -44,9 +51,9 @@ public class CommunityServiceIMLP implements CommunityService {
     @Transactional
     @Override
     public void save(Community community){
-        Ambient ambient = community.getAmbient();
-        ambient=ambientDao.save(ambient);
-        community.setAmbient(ambient);
+        //Ambient ambient = community.getAmbient();
+       // ambient=ambientDao.save(ambient);
+        //community.setAmbient(ambient);
         communityDao.save(community);
     }
 

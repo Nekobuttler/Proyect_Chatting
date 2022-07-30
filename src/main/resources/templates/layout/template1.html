@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+            
+    </head>
+    <body>
+        
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-sm navbar-black bg-dark p-0">
+    
+           
+        </header>
+        
+       
+        <footer th:fragment="footer" class="bg-info text-white mt-5 p-2">
+             <div class="col">
+                 <p class="lead text-center">  |
+            
+            <a th:href="@{/(lang=es)}">Es</a> |
+            <a th:href="@{/(lang=en)}">En</a>
+</p>
+</div>
+        </footer>
+        
+    </body>
+</html>

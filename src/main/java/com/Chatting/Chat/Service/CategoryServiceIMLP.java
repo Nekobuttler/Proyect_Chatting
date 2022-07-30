@@ -5,51 +5,48 @@
 package com.Chatting.Chat.Service;
 
 import com.Chatting.Chat.Dao.AmbientDao;
-import com.Chatting.Chat.Domain.Categories;
+import com.Chatting.Chat.Domain.Category;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.Chatting.Chat.Dao.CategoriesDao;
 import com.Chatting.Chat.Domain.Ambient;
-import com.Chatting.Chat.Domain.Categories;
+import com.Chatting.Chat.Domain.Category;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.Chatting.Chat.Dao.CategoryDao;
 
 
 @Service
-public class CategoryServiceIMLP implements CategoriesService {
+public class CategoryServiceIMLP implements CategoryService {
     
     @Autowired
-    private CategoriesDao categoryDao;
+    private CategoryDao categoryDao;
     
-    @Autowired
-    private AmbientDao ambientDao;
+    
     
     @Transactional(readOnly=true)
     @Override
-    public List<Categories> getCategories(){
-        return (List<Categories>) categoryDao.findAll();
+    public List<Category> getCategories(){
+        return (List<Category>) categoryDao.findAll();
     }
     
     @Transactional
     @Override
-    public void delete(Categories category){
+    public void delete(Category category){
         categoryDao.delete(category);
     }
     
     
     @Transactional
     @Override
-    public void save(Categories category){
-        Ambient ambient = category.g;
-        ambient=ambientDao.save(ambient);
-        category.setAmbient(ambient);
+    public void save(Category category){
+        
         categoryDao.save(category);
     }
 
     
     @Override
     @Transactional(readOnly=true)
-    public Categories getCategory(Categories category){
+    public Category getCategory(Category category){
         return categoryDao.findById(category.getId_category()).orElse(null);
     }
     

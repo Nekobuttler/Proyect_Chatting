@@ -23,14 +23,14 @@ public class Community implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_ambient")
+    @Column(name="id_community")
      private Long id_community;
     
     
-    private String name;
+    private String community_name;
     private int users;
     private String id_categories;
-    private String description;
+    private String descrip;
 
     @JoinColumn(name="id_ambient",referencedColumnName = "id_ambient")
     @ManyToOne
@@ -38,10 +38,10 @@ public class Community implements Serializable{
     
     public Community(){}
 
-    public Community(String name, int users, String description, Ambient ambient) {
-        this.name = name;
+    public Community(String community_name, int users, String descrip, Ambient ambient) {
+        this.community_name = community_name;
         this.users = users;
-        this.description = description;
+        this.descrip = descrip;
         this.ambient=ambient;
     }
     

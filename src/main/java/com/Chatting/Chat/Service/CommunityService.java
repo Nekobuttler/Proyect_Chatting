@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface CommunityService{
     
-    public List<Community> getCommunities(Ambient ambient);
-       
+   // public List<Community> getCommunities(Ambient ambient);
+    
+   public List<Community> getCommunities();
    
     public void save(Community community);
     

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head th:replace="layout/template1 :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="layout/template1 :: header"></header>
+            <div class="logo-container">
+                <h1 class="Logo"> Logo</h1>
+            </div>
+            <div class="navbar-links">
+            <ul class="main-links">
+                <li class="links"><a>Profile </a></li>
+                <li class="links"><a>Explore </a></li>
+                <li class="links"><a>News </a></li>
+                <li class="links"><a> Settings </a> </li>
+            </ul>
+                
+            </div>
+       
+        <div class="container">
+            <div class="aside-container">
+            
+              <!--   <ul class="chat-container" th:each="user :${users}">
+                    comment <li class="chat" th:text="$(user.getUsername)">
+
+                    </li>
+                    <div th:if="${users == null or users.empty}">-->
+           
+                </div>
+                </ul>
+                
+          
+                </div>
+            <div class=container-communities >
+                <div th:if="${users != null and !users.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Id_usuario</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Contrase;a</th>
+                
+            </thead>
+            <tbody>
+            <tr th:each="user :${users}">
+                <td th:text="${user.id_user}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td><!-- comment -->
+                <td th:text="${user.edad}"></td><!-- comment -->
+                <td th:text="${user.password}"></td><!-- comment -->
+                <td><a th:href="@{/Log_in/}+${user.id_user}" > Log_in</a></td><!-- create a start page for the user  -->
+                
+               <!--<td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td> -->
+               
+                
+            </tr>
+            </tbody>
+ 
+        </table>
+            </div>
+         <div th:if="${communities == null or communities.empty}">
+            <h2>No se tienen usuarios que mostrar</h2>    
+        </div>
+        
+        
+        <div th:if="${communities != null and !communities.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Users</th>\
+                <th>About</th>
+                
+            </thead>
+            <tbody>
+            <tr th:each="community :${communities}">
+                <td th:text="${community.community_name}"></td>
+                <td th:text="${community.id_community}"></td>
+                <td th:text="${community.users}"></td>
+                <td th:text="${community.descrip}"></td>
+            
+
+            </tr>
+            </tbody>
+ 
+        </table>
+            </div>
+         <div th:if="${categories == null or categories.empty}">
+            </div>
+       
+    </body>
+</html>

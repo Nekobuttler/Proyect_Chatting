@@ -13,23 +13,26 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="categories")
-public class Categories implements Serializable{
+@Table(name="category")
+public class Category implements Serializable{
     private static final long serialVersionUID = 1L;
     
     
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-   
-     private Long id_categories;
-    private String name;
+    private Long id_category;
+    
+    
+    private String category_name;
 
-    public Categories(){}
+    public Category(){}
 
-    public Categories(String name) {
-        this.name = name;
+    public Category(String category_name) {
+        this.category_name = category_name;
     }
+
+  
     
    
     

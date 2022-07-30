@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
     <head>
         <title>Chatting</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <a href="index.html"></a>
+         <!-- <div th:if="${categories != null and !categories.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Name</th>
+                <th>ID</th>
+                
+            </thead>
+            <tbody>
+            <tr th:each="category :${categories}">
+                <td th:text="${category.name}"></td>
+                <td th:text="${category.id_category}"></td>
+               
+                
+               <!--<td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td> -->
+               
+                
+            </tr>
+            </tbody>
+ 
+        </table>
+            </div>
+         <div th:if="${categories == null or categories.empty}">
+            <h2>No se tienen categorias que mostrar</h2>    
+        </div>
+        
+        
+        
+        
+        
+        <a href="SeeData.html"></a>
         <h1>Nuestros usuarios</h1>
         <a th:href="@{/}">
             <div>
@@ -22,6 +53,7 @@
                 <th>Email</th>
                 <th>Edad</th>
                 <th>Contrase;a</th>
+                
             </thead>
             <tbody>
             <tr th:each="user :${users}">
@@ -30,7 +62,10 @@
                 <td th:text="${user.email}"></td><!-- comment -->
                 <td th:text="${user.edad}"></td><!-- comment -->
                 <td th:text="${user.password}"></td><!-- comment -->
-              <!-- <td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td>  --> 
+                <td><a th:href="@{/Log_in/}+${user.id_user}" > Log_in</a></td><!-- create a start page for the user  -->
+                
+               <!--<td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td> -->
+               
                 
             </tr>
             </tbody>
@@ -38,7 +73,33 @@
         </table>
             </div>
          <div th:if="${users == null or users.empty}">
-            <h2>No se tienen articulos que mostrarr</h2>    
+            <h2>No se tienen usuarios que mostrar</h2>    
+        </div>
+        
+        
+        <div th:if="${categories != null and !categories.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Name</th>
+                <th>ID</th>
+                
+            </thead>
+            <tbody>
+            <tr th:each="category :${categories}">
+                <td th:text="${category.category_name}"></td>
+                <td th:text="${category.id_category}"></td>
+               
+                
+               <!--<td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td> -->
+               
+                
+            </tr>
+            </tbody>
+ 
+        </table>
+            </div>
+         <div th:if="${categories == null or categories.empty}">
+            <h2>No se tienen categorias que mostrar</h2>    
         </div>
     </body>
 </html>
