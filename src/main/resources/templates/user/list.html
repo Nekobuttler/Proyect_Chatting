@@ -9,22 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         
+          <header th:replace="layout/template1 :: header" ></header>
         
-        <a href="SeeData.html"></a>
+        <a href="/user/list"></a>
         <h1>Nuestros usuarios</h1>
         <a th:href="@{/}">
             <div>
                 <h3>Logo</h3>
             </div>
         </a>
+        <a th:href="@{/user/new}">new</a>
         <div th:if="${users != null and !users.empty}"> <!-- clase model getEstados o inicio,start -->
         <table border="2">
             <thead>
-                <th>Id_usuario</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Edad</th>
+                <th>[[#{community.id}]]</th>
+                <th>[[#{community.name}]]</th>
+                <th>[[#{community.Users}]]</th>
+                <th>[[#{community.about}]]</th>
                 <th>Contrase;a</th>
                 
             </thead>
@@ -35,13 +36,18 @@
                 <td th:text="${user.email}"></td><!-- comment -->
                 <td th:text="${user.edad}"></td><!-- comment -->
                 <td th:text="${user.password}"></td><!-- comment -->
-                <td><a th:href="@{/Log_in/}+${user.id_user}" > Log_in</a></td><!-- create a start page for the user  -->
                 
-               <!--<td><a th:href="/eliminarUser/{id_user}" > Eliminar</a></td> -->
+                 <td><a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/user/erase/}+${user.id_user}" >Eliminar</a></td>
+                 
+                  <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/user/Confi/}+${user.id_user}" >confi</a></td>
                
                 
             </tr>
             </tbody>
+            </div>
+             <div th:if="${users == null or users.empty}">
+            <h2>No se tienen comunidades que mostrar</h2>    
+        </div>
  
         
     </body>

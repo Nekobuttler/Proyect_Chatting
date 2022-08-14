@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head th:replace="layout/template1 :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/started_sesion/User_Main_Page"></a>
+        
+        <header th:replace="layout/template1 :: header"></header>
+            <div class="logo-container">
+                <h1 class="Logo"> Logo</h1>
+            </div>
+        <div>
+            <div class="navbar-links">
+            <ul class="main-links">
+                <li class="links"><a>Profile </a></li>
+                <li class="links"><a>Explore </a></li>
+                <li class="links"><a>News </a></li>
+                <li class="links"><a> Settings </a> </li>
+            </ul>   
+            </div>
+        </div>
+        
+        <div th:if="${users != null and !users.empty}"
+             class="d-flex justify-content-center">
+        <div th:each="user :${users}" class="container">
+            <div clas="container" style="width: 18rem;">
+                
+                    <h5 th:text="${user.username}" class="card-title"></h5>
+                    <p th:text="${user.email}" class="card-text"></p>
+                    <p th:text="${user.edad}"></p>
+                    <p th:text="${user.id_community}"></p>
+                    <a th:href="@{/user/Confi/}+${user.id_user}" >Join</a>
+                
+                
+            </div>
+            </div>
+       
+            </div>
+        
+         <div th:if="${users == null or users.empty}">
+            <h2>No se tienen comunidades que mostrar</h2>    
+        </div>
+        
+        
+         
+    </body>
+</html>

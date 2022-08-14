@@ -1,12 +1,11 @@
-
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
     
-    <link th:href="@{/styles/User_registration.css}" rel="stylesheet" />
-   
-        
-<html >
-    
-    <link href="Untitled-2.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Styles/User_registration.css">
+     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
    
         <title>Chatting</title>
         <meta charset="UTF-8">
@@ -32,21 +31,24 @@
           
                 
          <div class="formulary_container">
-             <section class="formulary">
+             <div class="formulary">
                 <header>Sign Up</header>
-          <form class="form" th:action="@{/saveUser}"
+          <form class="form" th:action="@{/Data_recolectation}"
               method="post"
-              th:object="${user}">
+              th:object="${user}"
+              style="">
             <input  type="hidden" name="id_user" th:field="*{id_user}" >
             
             <div>
             <label  for="username">Username</label>
-            <input class="input" type="text" name="username" th:field="*{username}" placeholder="Enter an username"/>
+            <input class="input" type="text" name="username" th:field="*{username}" 
+                   placeholder="Enter an username" required/>
             </div>
             
             <div>
             <label for="email">Email</label>
-            <input class="input"type="text" name="email" th:field="*{email}" placeholder="Enter your email"/>
+            <input class="input"type="text" name="email" th:field="*{email}" placeholder="Enter your email"
+                   required/>
             </div>
            
             <div>
@@ -56,10 +58,12 @@
             
             <div>
              <label for="password">Password</label>
-             <input  class="input" type="text" name="password" th:field="*{password}" placeholder="Enter a secure password"/>
+             <input  class="input" type="text" name="password" th:field="*{password}" placeholder="Enter a secure password"
+                     required/>
             </div>
          
-            <input class="button" type="submit" name="guardar" value="Guardar"/>
+            <input class="btn btn-warning btn-lg btn-block" data-toggle="button" aria-pressed="false" autocomplete="off" 
+                   type="submit" name="guardar" value="Guardar"/>
         </form>
     </section>
              </div>

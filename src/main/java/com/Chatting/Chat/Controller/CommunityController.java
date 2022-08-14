@@ -19,39 +19,48 @@ public class CommunityController {
     @Autowired
     private CommunityService communityService;
     
-
-    @GetMapping("/CommunityData")
+    
+    
+    
+    
+    @GetMapping("/community/new")
+    public String newCommunity(Community community){
+        return "community/Confi";
+    }
+     
+    
+    @GetMapping("community/list")
     public String CommunityData(Model model) {
         var communities = communityService.getCommunities();
         model.addAttribute("communities", communities);
-        return "User-Page";
-       
+        return "community/list";
+   
     }
     
-    @PostMapping("/saveCommunity")
+    @PostMapping("/community/save")
     public String saveCommunity(Community community){
        communityService.save(community);
-        return "redirect:/";
+        return "redirect:/community/list";
                 
    }
     
     
     
-     // @GetMapping("/")
-    //public String modificarArticulo(Model model){
+      @GetMapping("/community/Confi/{id_community}")
+    public String ConfiCommunity(Model model, Community community){
         
-    //    var articulos= artService.getArticulos();
-   //     model.addAttribute("articulos", articulos);
+        community= communityService.getCommunity(community);
+        model.addAttribute("community", community);
         
-  //      return "index";
-                
-  //  }
+        return "community/Confi";
+
+   }
     
-    @GetMapping("/eliminarCommunity/{id_community}")
+    @GetMapping("/community/erase/{id_community}")
     public String deleteCommunity(Community community){
        communityService.delete(community);
         
-        return "redirect:/";
+        return "redirect:/community/list";
           }
     
     

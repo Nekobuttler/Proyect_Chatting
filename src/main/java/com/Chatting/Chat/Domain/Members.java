@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name="members")
 public class Members implements Serializable{
     private static final long serialVersionUID = 1L;
     
@@ -20,21 +20,17 @@ public class Members implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-     private Long id_user;
+     private Long id_members;
     
-    private String username;
-    private String email;
-    private String password;
-    private int edad;
+    private Long id_user;
+    private Long id_community;
 
     public Members(){}
     
-    public Members(String username, String email, String password, int edad) {
+    public Members(Long id_community, Long id_user) {
        
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.edad = edad;
+        this.id_community=id_community;
+        this.id_user=id_user;
     }
     
     

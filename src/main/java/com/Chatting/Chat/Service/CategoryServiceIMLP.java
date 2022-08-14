@@ -50,6 +50,18 @@ public class CategoryServiceIMLP implements CategoryService {
         return categoryDao.findById(category.getId_category()).orElse(null);
     }
     
+    /* 
+    @Override
+    @Transactional(readOnly=true)
+    public Category getByName(Category category){
+         return (List<Category>) categoryDao.f
+    }
+    */
+
+
+   
+   
+    
    
     
     

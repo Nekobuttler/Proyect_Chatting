@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head>
+        <title>Chatting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <header th:replace="layout/template1 :: header" ></header>    
+    </head>
+    <body>
+         
+        
+        <a href="category/list"></a>
+        <h1>Nuestros usuarios</h1>
+        <a th:href="@{/}">
+            <div>
+                <h3>Logo</h3>
+            </div>
+        </a>
+        <a th:href="@{/category/new}">new</a>
+        <div th:if="${categories != null and !categories.empty}"> <!-- clase model getEstados o inicio,start -->
+        <table border="2">
+            <thead>
+                <th>Id_cate</th>
+                <th>Username</th>
+                
+                
+            </thead>
+            <tbody>
+            <tr th:each="category :${categories}">
+                <td th:text="${category.id_category}"></td>
+                <td th:text="${category.category_name}"></td><!-- comment -->
+                
+                <td><a th:href="@{/category/Confi/}+${category.id_category}" > Log_in</a></td><!-- create a start page for the user  -->
+                
+             <td><a th:href="@{/category/erase/}+${category.id_category}" > Log_in</a></td><!-- create a start page for the user  -->
+               
+                
+            </tr>
+            </tbody>
+            </table>
+            </div>
+ 
+        
+    </body>
+</html>

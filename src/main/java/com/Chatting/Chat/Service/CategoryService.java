@@ -17,4 +17,6 @@ public interface CategoryService{
     
     public Category getCategory(Category category);
     
+    //public Category getByName(Category category);
+    
 }

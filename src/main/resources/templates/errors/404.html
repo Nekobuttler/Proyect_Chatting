@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Chatting</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layaout/template1 :: header"></header>
+        <section id="actions" class="py-4 md-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    
+                    
+                </div>
+                
+            </div>
+            <section id="login">
+                <div class="container">
+                    <div class="row">
+                        <div class="col md-6 mx-auto">
+                            <div class="card">
+                                <div class="class header">
+                                    <h4>[[#{login.login}]]</h4>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <form method="POST" th:action="@{/login}">
+                                        <div class="row py-1 md-2 bg-light">
+                                        <div class="form-group">
+                                            <label for="username" id="username">[[#{login.username}]]</label>
+                                            <input type="text" name="username" id="username" />
+                                        </div>
+                                        </div>   
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+                
+        </section>
+    </body>
+</html>

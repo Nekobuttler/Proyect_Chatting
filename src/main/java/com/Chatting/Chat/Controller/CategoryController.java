@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.Chatting.Chat.Controller;
 
 import com.Chatting.Chat.Domain.Category;
@@ -10,53 +7,56 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.Chatting.Chat.Service.CategoryService;
+import org.springframework.stereotype.Controller;
 
-/**
- *
- * @author okk
- */
+@Controller
 public class CategoryController {
-     @Autowired
+    
+    @Autowired
     private CategoryService categoriesService;
     
+     @GetMapping("/category/new")
+    public String newCategory(Category category){
+        return "category/Confi";
+    }
+   
+  /*  @PostMapping("/category/search")
+    public String search(Category category, Model model){
+        category = categoriesService.g
+    }
+    */
      
-     @GetMapping("/SeeData")
-    public String dataVisualization(Model model) {
+     @GetMapping("category/list")
+    public String CategoryData(Model model) {
         var categories = categoriesService.getCategories();
         model.addAttribute("categories", categories);
-        return "index";
+        return "category/list";
        
     }
     
-    @PostMapping("/saveCategory")
+    @PostMapping("/category/save")
     public String guardarCategory(Category category){
        categoriesService.save(category);
-        return "redirect:/";
+        return "redirect:/category/list";
                 
    }
+  
     
-   @GetMapping("/CreateCategory")
-    public String CreateCategory(Category category){
-        return "categoryCreation";
-    }
-    
-    
-    
-     // @GetMapping("/")
-    //public String modificarArticulo(Model model){
+      @GetMapping("/category/Confi/{id_category}")
+    public String ConfiCategory(Model model, Category category){
         
-    //    var articulos= artService.getArticulos();
-   //     model.addAttribute("articulos", articulos);
+        category= categoriesService.getCategory(category);
+        model.addAttribute("category", category);
         
-  //      return "index";
-                
-  //  }
+        return "category/Confi";
+
+   }
     
-    @GetMapping("/eliminarCategory/{id_categories}")
+    @GetMapping("/category/erase/{id_category}")
     public String deleteCategory(Category category){
        categoriesService.delete(category);
         
-        return "redirect:/";
+        return "redirect:/category/list";
           }
     
     

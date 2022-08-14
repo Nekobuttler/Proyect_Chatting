@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+         <header th:replace="layout/template1 :: header" ></header>
+        <a href="list"></a>
+        <h1>Datos de Cliente</h1>
+        <a th:href="@{/community/list}">
+            <div>
+                <h3>Regresar</h3>
+            </div>
+        </a>
+        <form th:action="@{/community/save}"
+              method="post"
+              th:object="${community}">
+            <input type="hidden" name="id_community" th:field="*{id_community}">
+           
+            <div>
+            <label for="community_name">community_name</label>
+            <input type="text" name="community_name" th:field="*{community_name}"/>
+            </div>
+            <div>
+             <label for="users">users</label>
+             <input type="number" name="users" th:field="*{users}"/>
+             </div>
+            
+            <div>
+             <label for="descrip">descrip</label>
+             <textarea name="descrip" th:field="*{descrip}"></textarea>
+            </div>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/template1 :: footer" ></footer>
+    </body>
+</html>

@@ -18,19 +18,26 @@ public class UserController {
     @Autowired
     private UserService userService;
     
+    
+    
+     @GetMapping("/user/new")
+    public String newUser(User user){
+        return "user/Confi";
+    }
+    
 
-    @GetMapping("/SeeData")
+    @GetMapping("user/list")
     public String dataVisualization(Model model) {
         var users = userService.getUsers();
         model.addAttribute("users", users);
-        return "index";
+        return "user/list";
        
     }
     
-    @PostMapping("/saveUser")
+    @PostMapping("/user/save")
     public String saveUser(User user){
        userService.save(user);
-        return "redirect:/";
+        return "redirect:/user/list";
                 
    }
     
@@ -40,28 +47,33 @@ public class UserController {
         return "";
             }
     
-     // @GetMapping("/")
-    //public String modificarArticulo(Model model){
-        
-    //    var articulos= artService.getArticulos();
-   //     model.addAttribute("articulos", articulos);
-        
-  //      return "index";
-                
-  //  }
+     
     
-    @GetMapping("/eliminarUser/{id_user}")
+    @GetMapping("/user/erase/{id_user}")
     public String deleteUser(User user){
        userService.delete(user);
         
-        return "redirect:/";
+        return "redirect:/user/list";
           }
+    
+    
+    
+    
+      @GetMapping("/user/Confi/{id_user}")
+    public String ConfiUser(Model model, User user){
+        
+        user= userService.getUser(user);
+        model.addAttribute("user", user);
+        
+        return "user/Confi";
+
+   }
     
     
     @GetMapping("/Log_in/{id_user}")
     public String log_user(User user){
      
         
-        return "/started_sesion/User-Page";
+        return "/user/list";
           }
 }

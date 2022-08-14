@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://thymeleaf.org/extras/spring-security"
+      >
     
     <head>
         <title>Chatting</title>
@@ -9,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="/Styles/1.css">
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
         <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        
          <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -18,65 +20,75 @@
         
         
         <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-sm navbar-black  p-0">
-                
-                <div class="container">
-                    <a class="navbar-brand" th:href="@{/}">Chatting</a>
+            <nav class="navbar navbar-nav-scroll navbar-expand-sm p-0 " id="navbar1">
+
+                <div class="container-fluid">
+                    <a class="navbar-brand" th:href="@{/}"><h2>Chatting</h2></a>
                     <button class="navbar-toggler" 
                             data-toggle="collapse"
                             data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')">
+                <ul class="navbar-nav" >
                     <li class="nav-item-px2">
-                        <a th:href="@{/user/list}" class="nav-menu-link nav-link">[[#{template.users}]]</a>
+                        <a th:href="@{/user/list}" class="nav-menu-link nav-link">
+                            
+                                [[#{aplication.about}]]
+                            
+                        </a>
                         
                     </li>
                     <li class="nav-item-px2" >
-                        <a th:href="@{/category/list}" class="nav-menu-link nav-link" >[[#{template.categories}]]</a>
+                        <a th:href="@{/category/list}" class="nav-menu-link nav-link" >[[#{aplication.documentation}]]</a>
                         
                     </li>
                     <li class="nav-item-px2" >
-                        <a th:href="@{/community/list}" class="nav-menu-link nav-link" >[[#{template.communities}]]</a>
+                        <a th:href="@{/community/list}" class="nav-menu-link nav-link" >[[#{aplication.support}]]</a>
                         
                     </li>
+                    </ul>
+                    
+
+                 <div class="container d-inline-flex justify-content-end p-2 gap-2">
+                     <ul class="nav">
+               <li class="nav-item">
+               <a th:href="@{/sign_in}" class="nav-link text-success">
+                   [[#{aplication.signin}]]
+               </a>
+               </li>
+               <li class="nav-item">
+                <a th:href="@{/login}"class="nav-link text-success">
+                    <i class="bi bi-person"> 
+                                [[#{aplication.login}]]
+                    </i>
+                </a>
+               </li> 
+                <li class="nav-item">
+               <a th:href="@{/Userlogin}" class="nav-link" >[[#{aplication.login}]]</a>
+                </li>
                 </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item mr-3">
-                                <a href="#" class="nav-link">
-                                    <i class="fas fa-user"></i>
-                                    [[#{aplication.title}]]:
-                                    <span sec:authentication="name"></span>
-                                </a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <form method="POST" th:action="@{/logout}">
-                                    <a href="#" 
-                                       onclick="this.parentNode.submit();"
-                                       class="nav-link">
-                                        <i class="fas fa-user-times"></i> 
-                                        [[#{template.logout}]]
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
-             </div>
-          </div>
-                
+                </div>           
+            </div>
+                    </div>
+                  
+             
                 
             </nav>
-            <section id="main-header" class="py2 text-white">
+            
+            <section id="main-header" class="py2 text-amazing">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
                             <h1>
-                                <i class="fas fas-cog">[[#{aplication.title}]]</i>
+                               
                             </h1>
                         </div>
                     </div>
                 </div>
             </section>
+            
+            
         </header>
         
        

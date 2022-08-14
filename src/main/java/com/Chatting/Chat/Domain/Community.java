@@ -29,20 +29,20 @@ public class Community implements Serializable{
     
     private String community_name;
     private int users;
-    private String id_categories;
     private String descrip;
 
-    @JoinColumn(name="id_ambient",referencedColumnName = "id_ambient")
-    @ManyToOne
-    private Ambient ambient;
+   // @JoinColumn(name="id_ambient",referencedColumnName = "id_ambient")
+    //@ManyToOne
+   // private Ambient ambient;
     
-    public Community(){}
+    public Community(){
+    }
 
-    public Community(String community_name, int users, String descrip, Ambient ambient) {
+    public Community(String community_name, int users, String descrip) {
         this.community_name = community_name;
         this.users = users;
         this.descrip = descrip;
-        this.ambient=ambient;
+      
     }
     
     

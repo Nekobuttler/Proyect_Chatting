@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head>
+        <title>Chatting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <header th:replace="layout/template1 :: header" ></header>
+    </head>
+    <body>
+         
+        
+        <a href="/community/list"></a>
+        <h1>Communities</h1>
+        <a th:href="@{/}">
+            <div>
+                <h3>Logo</h3>
+            </div>
+        </a>
+        <a th:href="@{/community/new}"sec:authorize="hasRole('ROLE_ADMIN')" >new</a>
+        <div th:if="${communities != null and !communities.empty}"> 
+        <table border="2">
+            <thead>
+                <th>Id_usuario</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Contrase;a</th>
+                
+            </thead>
+            <tbody>
+            <tr th:each="community :${communities}">
+                <td th:text="${community.id_community}"></td>
+                <td th:text="${community.community_name}"></td>
+                <td th:text="${community.users}"></td><!-- comment -->
+                <td th:text="${community.descrip}"></td><!-- comment -->
+                
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')"th:href="@{/community/Confi/}+${community.id_community}" >Log_in</a></td><!-- create a start page for the user  -->
+               <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/erase/}+${community.id_community}" >Eliminar</a></td>
+               
+                
+            </tr>
+            </tbody>
+            </table>
+            </div>
+          <div th:if="${communities == null or communities.empty}">
+            <h2>No se tienen comunidades que mostrar</h2>    
+        </div>
+        
+    </body>
+</html>

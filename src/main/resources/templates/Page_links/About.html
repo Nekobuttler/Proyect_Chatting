@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head th:replace="layout/template1 :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/started_sesion/User_Main_Page"></a>
+        
+        <header th:replace="layout/template1 :: header"></header>
+            <div class="logo-container">
+                <h1 class="Logo"> Logo</h1>
+            </div>
+        <div>
+            <div class="navbar-links">
+            <ul class="main-links">
+                
+                <li class="links"><a th:href="@{/started_sesion/Profile}">Profile </a></li>
+                <li class="links"><a>Explore </a></li>
+                <li class="links"><a>News </a></li>
+                <li class="links"><a> Settings </a> </li>
+            </ul>   
+            </div>
+        </div>
+        
+        <div th:if="${communities != null and !communities.empty}"
+             class="d-flex justify-content-center">
+        <div th:each="community :${communities}" class="container">
+            <div clas="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 th:text="${community.community_name}" class="card-title"></h5>
+                    <p th:text="${community.descrip}" class="card-text"></p>
+                    <p th:text="${community.users}"></p>
+                    <p th:text="${community.id_community}"></p>
+                    <a th:href="@{/community/join/}+${community.id_community}" >Join</a>
+                </div>
+                
+            </div>
+            </div>
+       
+            </div>
+        
+         <div th:if="${communities == null or communities.empty}">
+            <h2>No se tienen usuarios que mostrar</h2>    
+        </div>
+        
+        
+         <div th:if="${communities != null and !communities.empty}"> 
+        <table border="2">
+            <thead>
+                <tr>
+                <th>[[#{community.id}]]</th>
+                <th>[[#{community.name}]]</th>
+                <th>[[#{community.Users}]]</th>
+                <th>[[#{community.description}]]</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="community :${communities}">
+                <td th:text="${community.id_community}"></td>
+                <td th:text="${community.community_name}"></td>
+                <td th:text="${community.users}"></td><!-- comment -->
+                <td th:text="${community.descrip}"></td><!-- comment -->
+                
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')"th:href="@{/community/Confi/}+${community.id_community}" >Log_in</a></td><!-- create a start page for the user  -->
+               <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/erase/}+${community.id_community}" >Eliminar</a></td>
+               
+                
+            </tr>
+            </tbody>
+            </table>
+            </div>
+          <div th:if="${communities == null or communities.empty}">
+            <h2>No se tienen comunidades que mostrar</h2>    
+        </div>
+        <footer th:replace="layout/template1 :: footer" ></footer>
+    </body>
+</html>
