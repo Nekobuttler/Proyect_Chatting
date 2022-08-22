@@ -2,16 +2,18 @@
 package com.Chatting.Chat.Domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import lombok.Data;
 
 
 @Data
-@Entity
+@Entity(name="members")
 @Table(name="members")
 public class Members implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -20,17 +22,21 @@ public class Members implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id_members")
      private Long id_members;
     
-    private Long id_user;
-    private Long id_community;
+    @JoinColumn(name="id_user",referencedColumnName = "id_user")
+    private User user;
+    
+    @JoinColumn(name="id_ccommunity",referencedColumnName = "id_ccommunity")
+    private Community community;
 
     public Members(){}
     
-    public Members(Long id_community, Long id_user) {
+    public Members(Community community, User user) {
        
-        this.id_community=id_community;
-        this.id_user=id_user;
+        this.community=community;
+        this.user=user;
     }
     
     

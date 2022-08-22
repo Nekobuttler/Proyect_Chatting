@@ -26,27 +26,24 @@
             </div>
         </div>
         
-        <div th:if="${users != null and !users.empty}"
-             class="d-flex justify-content-center">
-        <div th:each="user :${users}" class="container">
+        
+        <div class="d-flex justify-content-center">
+        <div  class="container">
             <div clas="container" style="width: 18rem;">
                 
-                    <h5 th:text="${user.username}" class="card-title"></h5>
-                    <p th:text="${user.email}" class="card-text"></p>
-                    <p th:text="${user.edad}"></p>
-                    <p th:text="${user.id_community}"></p>
-                    <a th:href="@{/user/Confi/}+${user.id_user}" >Join</a>
+                    <h5 th:text="${#authentication.getPrincipal().getUsername()}" class="card-title"></h5>
+                    <p th:text="${#authentication.getPrincipal().getEmail()}" class="card-text"></p>
+                    <p th:text="${#authentication.getPrincipal().getEdad()}"></p>
+                    
                 
                 
             </div>
             </div>
-       
-            </div>
+       </div>
+            
         
-         <div th:if="${users == null or users.empty}">
-            <h2>No se tienen comunidades que mostrar</h2>    
-        </div>
-        
+         
+            
         
          
     </body>

@@ -44,9 +44,12 @@ public class UserServiceIMLP implements UserService {
         return userDao.findById(user.getId_user()).orElse(null);
     }
 
+    
+   
     @Override
-    public List<User> findByUsernameContaining(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Transactional(readOnly=true)
+    public User findByUsername(String username) {
+        return ((List<User>) userDao.findByUsername(username)).get(0);
     }
     
    

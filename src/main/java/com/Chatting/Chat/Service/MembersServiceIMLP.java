@@ -4,6 +4,7 @@
  */
 package com.Chatting.Chat.Service;
 
+import com.Chatting.Chat.CustomUserDetails;
 import com.Chatting.Chat.Dao.AmbientDao;
 import com.Chatting.Chat.Domain.Category;
 import java.util.List;
@@ -19,7 +20,10 @@ import com.Chatting.Chat.Dao.UserDao;
 import com.Chatting.Chat.Domain.Community;
 import com.Chatting.Chat.Domain.Members;
 import com.Chatting.Chat.Domain.User;
+import java.util.Objects;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Service
@@ -33,54 +37,88 @@ public class MembersServiceIMLP implements MembersService {
     
     @Autowired
     private MembersDao membersDao;
+   
+    //@Autowired 
+    //private CustomUserDetails userdeta;
     
+   // Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+   
+    
+    @Transactional(readOnly=true)
     @Override
     public List<Members> getMembers() {
         return (List<Members>)membersDao.findAll();
     }
+    
+    
 /*
     @Override
-    public List<User> getUsers(Community community) {
-        
-    }
-
-    @Override
-    public List<Community> getCommunities(User user) {
+    public List<Community> getCommunities2(String user) {
+        //user=((UserDetails)principal).getUsername();
+        var Obuser=userDao.findByUsername(user);
         var listM = getMembers();
-        listM.removeIf(e -> !e.getId_user().equals(user.getId_user()));
+        listM.removeIf(e -> !e.getUser().getId_user().equals(Obuser.getId_user()));
         var listC = (List <Community>) communityDao.findAll();
-        //return communityDao.findAllById(listM.forEach   )
-        //listC.retainAll()
+        var finallist= (List <Community>) null;
+        for( var a:listC ){
+            for(var b:listM){
+                if(Objects.equals(a.getId_community(), b.getCommunity().getId_community()))
+                    finallist.add(a);
+            }
+        }
+        return finallist;
        
     }
-*/
+    */
+    @Transactional(readOnly=true)
+    @Override
+    public List<Community> getCommunities2(String user) {
+        //user=((UserDetails)principal).getUsername();
+        //user=userdeta.getUsername();
+        var Obuser=userDao.findByUsername(user);
+        
+        return ((List<Community>) membersDao.findByUser(Obuser));
+       
+    }
+    
+    
+    
+    @Transactional
     @Override
     public void save(Members members) {
         membersDao.save(members);
     }
 
+    @Transactional
     @Override
     public void delete(Members members) {
         membersDao.delete(members);
     }
-
+    
+    @Transactional(readOnly=true)
     @Override
     public Members getMember(Members members) {
         return membersDao.findById(members.getId_members()).orElse(null);
     }
-
+/*
    
-
+    @Transactional(readOnly=true)
     @Override
     public List<Community> getCommunities(String user) {
-        
-        return (List<Community>) membersDao.getCommunities(user);
+        List<Community> list = membersDao.getCommunities(user);
+        return list;
     }
-
+    
+    
+    @Transactional(readOnly=true)
     @Override
     public List<User> getUsers(Community community) {
+        
         return (List<User>) membersDao.getUsers(community);
     }
+  */
+    
+    
     
   
 }

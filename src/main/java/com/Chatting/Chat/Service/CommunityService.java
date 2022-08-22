@@ -10,7 +10,11 @@ public interface CommunityService{
     
    //public List<Community> getCommunities(Ambient ambient);
     
+    
+            
    public List<Community> getCommunities();
+   
+   public Community getByCommunity_name(Community community);
    
     public void save(Community community);
     

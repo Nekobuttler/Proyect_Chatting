@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserService{
     
-    @Query(value= "SELECT u FROM USER WHERE u.username LIKE %?1%")
-    List<User> findByUsernameContaining(String username);
-    
+    public User findByUsername(String user);
+            
     public List<User> getUsers();
        
    

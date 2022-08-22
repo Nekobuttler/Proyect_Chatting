@@ -27,9 +27,15 @@ public class Friend_request implements Serializable{
     
     @JoinColumn(name="id_user",referencedColumnName = "id_user")
     private User Suser;
+    @JoinColumn(name="id_user",referencedColumnName = "id_user")
     private User Ruser;
 
     public Friend_request(){}
+
+    public Friend_request(User Suser, User Ruser) {
+        this.Suser = Suser;
+        this.Ruser = Ruser;
+    }
     
    
     

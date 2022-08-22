@@ -23,7 +23,9 @@ public class Ambient implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id_ambient")
      private Long id_ambient;
+    @Column(name="id_category")
      private Long id_category;  
+    @Column(name="id_community")
      private Long id_community;
 
     public Ambient(){}

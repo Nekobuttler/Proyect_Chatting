@@ -64,7 +64,12 @@ public class CommunityServiceIMLP implements CommunityService {
         return communityDao.findById(community.getId_community()).orElse(null);
     }
     
-   
     
+    @Override
+    @Transactional(readOnly=true)
+    public Community getByCommunity_name(Community community) {
+        return ((List<Community>) communityDao.findByCommunity_name(community.getCommunity_name())).get(0);
+    }
+ 
     
 }

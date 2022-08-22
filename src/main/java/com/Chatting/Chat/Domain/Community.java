@@ -14,7 +14,7 @@ import lombok.Data;
 
 
 @Data
-@Entity
+@Entity(name="community")
 @Table(name="community")
 public class Community implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -26,9 +26,13 @@ public class Community implements Serializable{
     @Column(name="id_community")
      private Long id_community;
     
-    
+    @Column(name="community_name")
     private String community_name;
+    
+   @Column(name="users")
     private int users;
+   
+   @Column(name="descrip")
     private String descrip;
 
    // @JoinColumn(name="id_ambient",referencedColumnName = "id_ambient")
