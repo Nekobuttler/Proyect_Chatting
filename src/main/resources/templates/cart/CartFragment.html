@@ -50,10 +50,10 @@
                             </div>
                     </div>
                     <p th:text="${community.id_community}"></p>
-                    <a th:href="@{/community/join/}+${community.id_community}+${#authentication.getPrincipal().getId()}" >Join</a>
+                    <a th:href="@{/community/join/}+${community.id_community}+'/'+${#authentication.getPrincipal().getId()}" >Join</a>
                     <a th:href="@{/community/explore/}+${community.id_community}">Explore</a>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/delete/}+${community.id_community}" ></a>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/modificar/}+${community.id_community}" ></a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/delete/}+${community.id_community}" >Delete</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/modificar/}+${community.id_community}" >Configure</a>
                        
                    
                 </div>

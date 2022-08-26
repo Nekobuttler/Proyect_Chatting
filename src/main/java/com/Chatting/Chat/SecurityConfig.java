@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "sign_in/Data_recolectation",
                         "/started_sesion/User_Main_Page",
                         "/","/started_sesion/Profile","Data_recolectation","started_sesion/User_Main_Page",
-                                 "started_sesion/User_Main_Page/**","/community/join/","/login"
+                                 "started_sesion/User_Main_Page/**","/community/join/**","/login"
                        ).authenticated()
             .anyRequest().permitAll()
             .and()

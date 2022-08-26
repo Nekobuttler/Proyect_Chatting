@@ -44,7 +44,7 @@ public class CommunityController {
      
     
     @GetMapping("community/list")
-    public String CommunityData(Model model) {
+    public String CommunityData(Model model, User user) {
         var communities = communityService.getCommunities();
         model.addAttribute("communities", communities);
         return "community/list";
