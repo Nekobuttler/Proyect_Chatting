@@ -70,17 +70,18 @@ public class MembersServiceIMLP implements MembersService {
        
     }
     */
+    /*
     @Transactional(readOnly=true)
     @Override
-    public List<Community> getCommunities2(String user) {
+    public List<Community> getCommunities2(String username) {
         //user=((UserDetails)principal).getUsername();
         //user=userdeta.getUsername();
-        var Obuser=userDao.findByUsername(user);
-        
+       var Obuser=userDao.findByUsername(username);
         return ((List<Community>) membersDao.findByUser(Obuser));
+      // return ((List<Community>) membersDao.getCommunities(username));
        
     }
-    
+    */
     
     
     @Transactional
@@ -98,7 +99,7 @@ public class MembersServiceIMLP implements MembersService {
     @Transactional(readOnly=true)
     @Override
     public Members getMember(Members members) {
-        return membersDao.findById(members.getId_members()).orElse(null);
+        return membersDao.findById(members.getId_member()).orElse(null);
     }
 /*
    
@@ -117,7 +118,16 @@ public class MembersServiceIMLP implements MembersService {
         return (List<User>) membersDao.getUsers(community);
     }
   */
-    
+    @Transactional
+    @Override
+    public void Create(Long user, Long community) {
+        Members member = null;
+        member.setId_community(community);
+        member.setId_user(user);
+        membersDao.save(member);
+    }
+
+  
     
     
   

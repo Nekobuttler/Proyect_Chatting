@@ -13,6 +13,7 @@ import com.Chatting.Chat.Domain.Category;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.Chatting.Chat.Dao.CategoryDao;
+import com.Chatting.Chat.Domain.Community;
 
 
 @Service
@@ -57,6 +58,11 @@ public class CategoryServiceIMLP implements CategoryService {
          return (List<Category>) categoryDao.f
     }
     */
+    @Transactional(readOnly=true)
+    @Override
+    public List<Category> getByCategories(String category_name) {
+        return (List<Category>) categoryDao.findAll();
+    }
 
 
    

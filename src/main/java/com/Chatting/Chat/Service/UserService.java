@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserService{
     
+    public List<User> getByUsername(String username);
+    
     public User findByUsername(String user);
             
     public List<User> getUsers();

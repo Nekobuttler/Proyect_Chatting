@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:fragment="head">
+        <title>TechShop</title>
+        
+        
+    </head>
+    <body>
+        <section th:fragment="listadoCommunities" id="communities">
+       <div class="container" >
+           <div class="row row-cols-2">
+               <h2 class="inline" th:text="#{index.tittle}">Communities</h2>
+               
+               <div id="resultsBlock">
+                   
+               </div>
+           </div>
+         <div class="row row-cols-auto" th:if="${communities != null and !communities.empty}">
+               <div th:each="community :${communities}">
+                   <div class="">
+                     <div  class="">
+                         <div class="card m-2" style="width: 18rem;">
+                <div class="card-body">
+                    <figure>
+                        <img th:src="@{${community.img}}" width="120" />
+                    </figure>
+                    
+                    <form>
+                        <input type="hidden" name="texto" th:value="${community.id_community}">
+                        <input type="hidden" name="texto" th:value="${community.users}">
+                            <button class="btn btn-light"
+                                    id="addCar"
+                                    name="addCar"
+                                    onclick="addCar(this.form)"
+                                    type="button">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                    </form>
+                    <h5 th:text="${community.community_name}" class="card-title"></h5>
+                    <p th:text="${community.descrip}" class="card-text"></p>
+                    <p th:text="${community.users}"></p>
+                    <p class="">Categorias</p>
+                    <div th:each="category :${categories}">
+                        <div th:each="ambient :${ambients}">
+                        <div th:if="${category.id_category == ambient.id_category and ambient.id_community == community.id_community}">
+                            <p class="card-text" th:text="${category.category_name}"></p>
+                        </div>
+                            </div>
+                    </div>
+                    <p th:text="${community.id_community}"></p>
+                    <a th:href="@{/community/join/}+${community.id_community}+${#authentication.getPrincipal().getId()}" >Join</a>
+                    <a th:href="@{/community/explore/}+${community.id_community}">Explore</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/delete/}+${community.id_community}" ></a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/community/modificar/}+${community.id_community}" ></a>
+                       
+                   
+                </div>
+                        </div>
+                         
+            </div>
+            </div>
+        </div>
+            </div>
+          
+            </div>
+            </section>
+        
+        <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(list)}">
+            <form action="/carrito/listado">
+                <button
+                    type="sumbit"
+                    class=" btn btn-primary">
+                    <i class="fas fa-cart-plus"></i>[[#{carrito.verCarrito}]] [[${total}]]
+                </button>
+            </form>
+            
+        </div>
+        
+        <div th:fragment="button_add" id="communities" class="container">
+                <div class="row">
+                    <div class="col-md-3" >   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#newCommunity">
+                            <i class="fas fa-plus"></i> Create New Community
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        <section th:fragment="createCommunity" id="communities">
+            <div id="newCommunity" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" >Create Community</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/community/save}" th:object="${community}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="id_community" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Community Name" th:text="#{community.community_name}">Community Name</label>
+                                    <input type="text" class="form-control" name="community_name" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descrip" th:text="#{community.descrip}">Community Description</label>
+                                    <textarea type="text" class="form-control" name="descrip" required="true"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="users" th:text="#{community.users}">Total of users</label>
+                                    <input type="number" class="form-control" name="users"/>
+                                </div>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" >Create Community</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>    
+        <section th:fragment="listadoCarrito" id="items">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>[[#{clientes.titulo}]]</h2>
+                            </div>
+                            <div class="card-body">
+        <div th:if="${items != null and !items.empty}">
+        <table class="table table-striped" border="1">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>[[#{community.community_name}]]</th>
+                    
+                    <th>[[#{community.desc}]]</th>
+                    <th>Telefono</th>
+                    <th>[[#{cliente.limite}]]</th><!-- comment -->
+                    <th>Eliminar</th><!-- comment -->
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item,contador : ${items}">
+                     
+                    <td>[[${contador.count}]]</td>
+                    <td >[[${community.community_name}]]</td>
+                    <td>[[${community.desc}]]</td>
+                    <td>[[${community.users}]]</td>
+                   
+                    <td><a  th:href="@{/community/Confi/}+${item.id_community}" class="btn btn-succes">Modificar
+                            <i class='fas fa-pencil'></i></a></td>
+                     <td><a th:href="@{/community/delete/}+${item.id_community}" class="btn btn-danger">Elimninar  
+                             <i class='fas fa-trash'></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+        <div th:if="${items == null or items.empty}">
+            <h2>No tenemos lista de itemes que mostrar</h2> 
+            </div>
+            </div>
+        </div>
+        </div>
+                    <div class='col-md-3'>
+                        <div class='card bg-danger text-white text-center mb-3'>
+                            <div class='card-body'>
+                                <h3>
+                                    [[#{carrito.carritoTotal}]]
+                                </h3>
+                                <h4>
+                                    [[${new java.text.DecimalFormat('$#,##0.00').format(carritoTotal)}]]
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class='col-md-3'>
+                        <div class='card bg-success text-white text-center mb-3'>
+                            <div class='card-body'>
+                                <a th:href='@{/facturar/carrito}'
+                                   class='btn btn-info'>
+                                    [[#{cliente.totalClientes}]]
+                                    <i class='fas fa-fordward'>[[#{carrito.facturar}]]</i>
+                                    </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+        </div>
+        </div>
+        </section>
+        
+    </body>
+</html>

@@ -26,11 +26,13 @@ public interface MembersService {
             nativeQuery = true)
 */
    
-   // public List<Community> getCommunities(String user);//se obtiene la id del usuario actual, se a;aden a una lista todos las comunidades
+   //public List<Community> getCommunities(String user);//se obtiene la id del usuario actual, se a;aden a una lista todos las comunidades
                                                      //encontrados en miembros con ese id del usuario y obtner aquellos a las que se ha unido 
-     
+   
     
-   public List<Community> getCommunities2(String user);
+   //public List<Community> getCommunities(String user);
+    
+  // public List<Community> getCommunities2(String user);
 
     public void save(Members members);
     
@@ -39,5 +41,6 @@ public interface MembersService {
     
    public Members getMember(Members members);
     
+   public void Create(Long user, Long community);
     
 }

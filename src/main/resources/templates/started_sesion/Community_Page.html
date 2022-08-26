@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    
+    <head th:replace="layout/template1 :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/started_sesion/User_Main_Page"></a>
+        
+        <header th:replace="layout/template1 :: header">
+            
+        </header>
+           
+        <div class="container">
+           
+                         <div class="card" style="width: 18rem;">
+                <div class="card-body" th:object="${community}">
+                    <h5 th:text="${community.community_name}" class="card-title"></h5>
+                    <p th:text="${community.descrip}" class="card-text"></p>
+                    <p th:text="${community.users}"></p>
+                    <p class="">Categorias</p>
+                    <div th:each="category :${categories}">
+                        <div th:each="ambient :${ambients}">
+                        <div th:if="${category.id_category == ambient.id_category and ambient.id_community == community.id_community}">
+                            <p th:text="${category.category_name}"></p>
+                        </div>
+                            </div>
+                    </div>
+                    <p th:text="${community.id_community}"></p>
+                    <a th:href="@{/community/join/}+${community.id_community}+${#authentication.getPrincipal().getUsername()}" >Join</a>
+                    <p>Usuarios</p>
+                    <div th:each="user :${users}">
+                    <div th:each="members :${members}">
+                    <div  <div th:if="${user.id_user == members.id_user and members.id_community == community.id_community}">
+                        <p th:text="${user.username}"></p>
+                    </div>
+                   </div>
+                        </div>
+                </div>
+                        </div>
+                         
+            
+           </div> 
+            
+         
+        
+        
+       
+        
+        
+        
+        
+        
+        <footer th:replace="layout/template1 :: footer" ></footer>
+    </body>
+</html>

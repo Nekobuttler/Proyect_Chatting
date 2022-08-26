@@ -51,6 +51,11 @@ public class UserServiceIMLP implements UserService {
     public User findByUsername(String username) {
         return ((List<User>) userDao.findByUsername(username)).get(0);
     }
+
+    @Override
+    public List<User> getByUsername(String username) {
+        return ((List<User>) userDao.getByUsername(username));
+    }
     
    
     

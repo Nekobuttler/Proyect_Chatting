@@ -5,24 +5,26 @@
 package com.Chatting.Chat.Service;
 
 import com.Chatting.Chat.Domain.Ambient;
-import com.Chatting.Chat.Domain.Category;
-import com.Chatting.Chat.Domain.Community;
+
 import com.Chatting.Chat.Domain.Friend_request;
+import com.Chatting.Chat.Domain.User;
 import java.util.List;
 
 public interface FriendsService {
     
-    public List<Friend_request> getFriendsRequests();
+    public void send(User user);// recibir un user para buscar su id o username
+    /*
+    public List<Friend_request> getFriendsRequests2(String username);
     
-    public List<Ambient> getAmbients();
+    public List<Friend_request> getFriendsRequests(String username);
+  */
     
-    public List<Community> getCommunities(Category category);
+    public List<Friend_request> getAllFriendsRequests();
+  
+    public void save(Friend_request fr);
     
-     
-    public void save(Ambient ambient);
-    
-    public void delete(Ambient ambient);
+    public void delete(Friend_request fr);
     
     
-    public Ambient getAmbient(Ambient ambient);
+    public Friend_request getFriend_request(Friend_request fr);
 }

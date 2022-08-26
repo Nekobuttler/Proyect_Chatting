@@ -14,109 +14,27 @@
         <header th:replace="layout/template1 :: header">
             
         </header>
-            <div class="logo-container">
-                <h1 class="Logo"> Logo</h1>
-            </div>
-        <div>
-            <div class="navbar-links">
-            <ul class="main-links">
-                
-                <li class="links"><a th:href="@{/started_sesion/Profile/}">Profile </a></li>
-                <li class="links"><a>Explore </a></li>
-                <li class="links"><a>News </a></li>
-                <li class="links"><a> Settings </a> </li>
-            </ul>   
-            </div>
-            <div th:action="@{user/getUser}">
-                
-            </div>
-        </div>
+         <section th:replace="cart/CartFragment :: listadoCommunities" />
+         
+          <section th:replace="cart/CartFragment :: createCommunity" />
+          
+          <section th:replace="cart/CartFragment :: button_add" />
+          
+           <footer th:replace="layout/template1 :: footer" ></footer>
+          
+         <script>
+             fucntion addCar(formulario){
+             var valor=formulario.elements[0].value;
+             var url = '/carrito/agregar';
+             url=url+ '/' +valor;
+             $("#resultsBlock").load(url);
+             }
+         </script>
+            
         
-         <div th:if="${communities != null and !communities.empty}"
-             class="d-flex justify-content-center">
-               <div th:each="community :${communities}">
-                   <div class="container">
-                     <div  class="container">
-                         <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 th:text="${community.community_name}" class="card-title"></h5>
-                    <p th:text="${community.descrip}" class="card-text"></p>
-                    <p th:text="${community.users}"></p>
-                    <p class="">Categorias</p>
-                    <div th:each="category :${categories}">
-                        <div th:each="ambient :${ambients}">
-                        <div th:if="${category.id_category == ambient.id_category and ambient.id_community == community.id_community}">
-                            <p th:text="${category.category_name}"></p>
-                        </div>
-                            </div>
-                    </div>
-                    <p th:text="${community.id_community}"></p>
-                    <a th:href="@{/community/join/}+${community.id_community}+${#authentication.getPrincipal().getUsername()}" >Join</a>
-                   
-                </div>
-                        </div>
-            </div>
-            </div>
-        </div>
-            </div>
-         <div class="container">
-                <div class="row">
-                    <div class="col-md-3" >   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#newCommunity">
-                            <i class="fas fa-plus"></i> Create New Community
-                        </button>
-                    </div>
-                </div>
-            </div>
-        
-       <section >
-            <div id="newCommunity" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" >Create Community</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <form th:action="@{/community/save}" th:object="${community}"
-                              method="POST" class="was-validated">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="id_community" th:text="#{community.id_community}">Id</label>
-                                    <input type="hidden" class="form-control" name="id_community" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Community Name" th:text="#{community.community_name}">Community Name</label>
-                                    <input type="text" class="form-control" name="community_name" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="descrip" th:text="#{community.descrip}">Community Description</label>
-                                    <textarea type="text" class="form-control" name="descrip" required="true"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="users" th:text="#{community.users}">Total of users</label>
-                                    <input type="number" class="form-control" name="users"/>
-                                </div>                                
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit" >Create Community</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>        
+         
         
         
        
-        
-        
-        
-        
-        
-        <footer th:replace="layout/template1 :: footer" ></footer>
     </body>
 </html>

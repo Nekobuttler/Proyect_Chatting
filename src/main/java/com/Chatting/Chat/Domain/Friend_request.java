@@ -25,20 +25,20 @@ public class Friend_request implements Serializable{
     @Column(name="id_fr")
      private Long id_fr;
     
-    @JoinColumn(name="id_user",referencedColumnName = "id_user")
-    private User Suser;
-    @JoinColumn(name="id_user",referencedColumnName = "id_user")
-    private User Ruser;
-
+    @JoinColumn(name="id_suser",referencedColumnName = "id_user")
+    private Long Suser;
+    @JoinColumn(name="id_ruser",referencedColumnName = "id_user")
+    private Long Ruser;
+    @Column(name="state")
+    private boolean state;
     public Friend_request(){}
 
-    public Friend_request(User Suser, User Ruser) {
+    public Friend_request(Long Suser, Long Ruser,boolean state) {
         this.Suser = Suser;
         this.Ruser = Ruser;
+        this.state = state;
     }
-    
-   
-    
+
     
     
 }

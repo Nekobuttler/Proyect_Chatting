@@ -76,4 +76,16 @@ public class UserController {
         
         return "/user/list";
           }
+    
+     
+    @PostMapping("/user/search")
+    public String searchUser(User user, Model model){
+        var users=userService.getByUsername(user.getUsername());
+        if(user!= null){
+            model.addAttribute("users",users);
+            return "user/result";
+        }else{
+            return "user/result";
+        }
+    }
 }

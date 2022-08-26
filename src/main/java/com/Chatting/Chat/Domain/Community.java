@@ -34,6 +34,9 @@ public class Community implements Serializable{
    
    @Column(name="descrip")
     private String descrip;
+   
+    @Column(name="img")
+    private String img;
 
    // @JoinColumn(name="id_ambient",referencedColumnName = "id_ambient")
     //@ManyToOne

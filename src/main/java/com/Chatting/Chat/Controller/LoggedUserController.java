@@ -89,11 +89,22 @@ public class LoggedUserController {
         return "/started_sesion/User_Main_Page";
         
     }
-    */
+    
            
+    @GetMapping("/started_sesion/User_Main_Page/{username}")
+    public String Main_Page(Model model, String username){
+      var communities = memberService.getCommunities2(username);
+        var categories= categoryService.getCategories();
+        var ambients= ambientService.getAmbients();
+        model.addAttribute("communities",communities);
+         model.addAttribute("ambients",ambients);
+          model.addAttribute("categories",categories);
+        return "/started_sesion/User_Main_Page";
+    }
+*/
             
      @GetMapping("/started_sesion/User_Main_Page")
-    public String Main_Page(Model model){
+    public String Main_Page(Model model, User user){
       var communities = communityService.getCommunities();
         var categories= categoryService.getCategories();
         var ambients= ambientService.getAmbients();

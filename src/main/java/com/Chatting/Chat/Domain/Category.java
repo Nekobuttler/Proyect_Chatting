@@ -12,7 +12,7 @@ import lombok.Data;
 
 
 @Data
-@Entity
+@Entity(name="category")
 @Table(name="category")
 public class Category implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -21,9 +21,10 @@ public class Category implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id_category")
     private Long id_category;
     
-    
+    @Column(name = "category_name")
     private String category_name;
 
     public Category(){}

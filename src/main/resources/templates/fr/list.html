@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
     
-    <head th:replace="layout/template1 :: head">
+    <head>
         <title>Chatting</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +19,13 @@
             </div>
         </a>
         <a th:href="@{/user/new}">new</a>
-        <div th:if="${users != null and !users.empty}"> <!-- clase model getEstados o inicio,start -->
+        <div th:if="${frs != null and !frs.empty}"> <!-- clase model getEstados o inicio,start -->
         <table border="2">
             <thead>
-                <th>[[#{community.id}]]</th>
-                <th>[[#{community.name}]]</th>
-                <th>[[#{community.Users}]]</th>
-                <th>[[#{community.about}]]</th>
+                <th>[[#{Friend_request.id}]]</th>
+                <th>[[#{Friend_request.name}]]</th>
+                <th>[[#{Friend_request.Users}]]</th>
+                <th>[[#{Friend_request.about}]]</th>
                 <th>Contrase;a</th>
                 
             </thead>

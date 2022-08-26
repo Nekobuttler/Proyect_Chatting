@@ -22,21 +22,21 @@ public class Members implements Serializable{
    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_members")
-     private Long id_members;
+    @Column(name="id_member")
+     private Long id_member;
     
     @JoinColumn(name="id_user",referencedColumnName = "id_user")
-    private User user;
+    private Long id_user;
     
-    @JoinColumn(name="id_ccommunity",referencedColumnName = "id_ccommunity")
-    private Community community;
+    @JoinColumn(name="id_community",referencedColumnName = "id_community")
+    private Long id_community;
 
     public Members(){}
     
-    public Members(Community community, User user) {
+    public Members(Long id_community, Long id_user) {
        
-        this.community=community;
-        this.user=user;
+        this.id_community=id_community;
+        this.id_user=id_user;
     }
     
     
